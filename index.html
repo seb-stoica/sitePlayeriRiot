@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil jucător · League of Legends</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+  <div id="backdrop"></div>
+
+  <header class="topbar">
+    <div class="logo" aria-hidden="true"></div>
+    <nav><a class="active">Profil</a></nav>
+    <form id="search">
+      <input id="riotId" placeholder="Nume#TAG" autocomplete="off" required aria-label="Riot ID">
+      <select id="region" aria-label="Server">
+        <option value="eun1">EUNE</option>
+        <option value="euw1">EUW</option>
+        <option value="na1">NA</option>
+        <option value="kr">KR</option>
+        <option value="br1">BR</option>
+        <option value="tr1">TR</option>
+      </select>
+      <button type="submit">Caută</button>
+    </form>
+  </header>
+
+  <main>
+    <p id="status" role="status">Introdu un Riot ID ca să vezi profilul.</p>
+    <section id="result" hidden></section>
+  </main>
+  <script src="script.js?v=4"></script>
+</body>
+</html>

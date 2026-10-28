@@ -1,0 +1,144 @@
+:root {
+  --bg: #010a13;
+  --panel: rgba(1, 10, 19, .88);
+  --gold: #c8aa6e;
+  --gold-hi: #f0e6d2;
+  --gold-lo: #785a28;
+  --gold-dark: #463714;
+  --blue: #0397ab;
+  --teal: #0ac8b9;
+  --text: #a09b8c;
+  --bad: #e84057;
+  --display: "Cinzel", "Times New Roman", serif;
+  --body: "Lato", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh;
+  background: var(--bg); color: var(--text);
+  font-family: var(--body); font-size: 15px;
+}
+
+/* Fundal: splash art de campion, întunecat ca în client */
+#backdrop {
+  position: fixed; inset: 0; z-index: -1;
+  background: var(--bg) center top / cover no-repeat;
+}
+#backdrop::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(1,10,19,.55), var(--bg) 85%);
+}
+
+/* Bara de sus */
+.topbar {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  padding: 0 24px; min-height: 60px;
+  background: linear-gradient(to bottom, #0a1428, #010a13);
+  border-bottom: 1px solid var(--gold-lo);
+  box-shadow: 0 2px 14px rgba(0,0,0,.7);
+}
+.logo {
+  width: 28px; height: 32px; background: linear-gradient(135deg, var(--gold-hi), var(--gold-lo));
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+nav a {
+  display: inline-block; padding: 20px 4px; margin-right: 20px;
+  font-family: var(--display); font-weight: 700; font-size: 14px;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold-hi);
+  border-bottom: 3px solid var(--gold);
+}
+form { display: flex; gap: 8px; margin-left: auto; padding: 10px 0; }
+input, select {
+  font: inherit; color: var(--gold-hi);
+  background: #1e2328; border: 1px solid var(--gold-dark);
+  padding: 8px 12px; height: 36px;
+}
+input { width: 220px; }
+input::placeholder { color: #5b5a56; }
+input:focus, select:focus { outline: none; border-color: var(--gold); }
+button {
+  font-family: var(--display); font-weight: 700; font-size: 13px;
+  letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+  color: var(--gold); height: 36px; padding: 0 22px;
+  background: linear-gradient(#1e2328, #0a1428);
+  border: 1px solid var(--gold-lo);
+  transition: color .15s, border-color .15s, box-shadow .15s;
+}
+button:hover, button:focus-visible {
+  color: var(--gold-hi); border-color: var(--gold); outline: none;
+  box-shadow: 0 0 10px rgba(200,170,110,.35);
+}
+button:disabled { opacity: .5; cursor: wait; }
+
+main { max-width: 760px; margin: 0 auto; padding: 48px 20px 64px; }
+#status { text-align: center; margin: 0 0 20px; min-height: 1.5em; }
+#status.error { color: var(--bad); }
+
+/* Panou cu chenar auriu */
+#result {
+  background: var(--panel);
+  border: 1px solid; border-image: linear-gradient(var(--gold), var(--gold-dark)) 1;
+  box-shadow: 0 0 40px rgba(0,0,0,.8);
+}
+.profile {
+  display: flex; gap: 22px; align-items: center; padding: 28px;
+  border-bottom: 1px solid var(--gold-dark);
+}
+.icon { position: relative; flex: none; }
+.icon img {
+  display: block; width: 96px; height: 96px; border-radius: 50%;
+  border: 3px solid var(--gold); box-shadow: 0 0 0 2px var(--bg), 0 0 18px rgba(200,170,110,.35);
+}
+.icon .lvl {
+  position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
+  min-width: 38px; text-align: center; padding: 1px 8px;
+  font-weight: 700; font-size: 13px; color: var(--gold-hi);
+  background: var(--bg); border: 1px solid var(--gold); border-radius: 10px;
+}
+.profile h2 {
+  margin: 0; font-family: var(--display); font-size: 28px; font-weight: 700;
+  color: var(--gold-hi); letter-spacing: .03em;
+}
+.profile h2 span { color: var(--text); font-size: 18px; font-weight: 500; }
+
+.section-title {
+  margin: 0; padding: 14px 28px;
+  font-family: var(--display); font-weight: 700; font-size: 13px;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
+  border-bottom: 1px solid var(--gold-dark);
+}
+.rank {
+  display: flex; align-items: center; gap: 20px; padding: 20px 28px;
+  border-bottom: 1px solid #1e2328;
+}
+.rank:last-child { border-bottom: 0; }
+.emblem {
+  flex: none; width: 64px; height: 72px; display: grid; place-items: center;
+  background: var(--tier);
+  clip-path: polygon(50% 0, 100% 22%, 100% 78%, 50% 100%, 0 78%, 0 22%);
+  position: relative;
+}
+.emblem::before {
+  content: ""; position: absolute; inset: 4px; background: #0a1428;
+  clip-path: inherit;
+}
+.emblem b { position: relative; font-family: var(--display); font-size: 20px; color: var(--tier); }
+.rank .info { flex: 1; }
+.rank .queue { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+.rank .tier { font-family: var(--display); font-weight: 700; font-size: 20px; color: var(--gold-hi); margin: 2px 0; }
+.rank .lp { color: var(--teal); font-weight: 700; }
+.rank .wl { text-align: right; }
+.rank .wl strong { display: block; font-family: var(--display); font-size: 22px; color: var(--gold-hi); }
+.empty { margin: 0; padding: 28px; text-align: center; }
+
+@media (max-width: 560px) {
+  form { margin-left: 0; width: 100%; }
+  input { flex: 1; width: auto; }
+  .profile { flex-direction: column; text-align: center; }
+  .rank { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #result:not([hidden]) { animation: show .3s ease-out; }
+  @keyframes show { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
